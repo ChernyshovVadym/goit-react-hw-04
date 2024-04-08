@@ -29,7 +29,7 @@ const App = () => {
           return;
         }
         setImages((prevImages) => [...prevImages, ...results]);
-        setVisible(page >= total_pages);
+        setVisible(page < total_pages);
       } catch (error) {
         setError(error);
       } finally {
@@ -49,7 +49,7 @@ const App = () => {
       <SearchBar onSubmit={onHandleSubmit} />
       <Toaster />
       <ImageGallery images={images} />
-      <LoadMoreBtn onClick={onClick} />
+      {isVisible && <LoadMoreBtn onClick={onClick} />}
       {loading && <Loader />}
       {error && <ErrorMessage />}
     </div>
