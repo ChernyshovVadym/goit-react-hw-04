@@ -4,6 +4,9 @@ import { getPhotos } from "./services/api";
 import SearchBar from "./components/SearchBar/SearchBar";
 import { useEffect, useState } from "react";
 import Loader from "./components/Loader/Loader";
+import ImageGallery from "./components/ImageGallery/ImageGallery";
+import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -35,15 +38,20 @@ const App = () => {
     };
     fetchData();
   }, [page, query]);
+
   const onHandleSubmit = (value) => {
     setQuery(value);
   };
-  console.log(images);
+  const onClick = () => setPage((prevPage) => prevPage + 1);
+  console.log(page);
   return (
     <div>
-      <Loader />
       <SearchBar onSubmit={onHandleSubmit} />
       <Toaster />
+      <ImageGallery images={images} />
+      <LoadMoreBtn onClick={onClick} />
+      {loading && <Loader />}
+      {error && <ErrorMessage />}
     </div>
   );
 };
