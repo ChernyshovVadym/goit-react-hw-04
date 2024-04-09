@@ -7,6 +7,7 @@ import Loader from "./components/Loader/Loader";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
+import ImageModal from "./components/ImageModal/ImageModal";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -14,8 +15,11 @@ const App = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isEmpty, setIsEmpty] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(true);
   const [isVisible, setVisible] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [url, setUrl] = useState("");
+  const [alt, setAlt] = useState("");
 
   useEffect(() => {
     if (!query) return;
@@ -41,14 +45,37 @@ const App = () => {
 
   const onHandleSubmit = (value) => {
     setQuery(value);
+    setIsEmpty(false);
   };
+
+  const openModal = (url, alt) => {
+    setShowModal(true);
+    setUrl(url);
+    setAlt(alt);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setUrl("");
+    setAlt("");
+  };
+
   const onClick = () => setPage((prevPage) => prevPage + 1);
-  console.log(page);
+  // console.log(page);
   return (
     <div>
       <SearchBar onSubmit={onHandleSubmit} />
+      {isEmpty && <p>Start search...</p>}
       <Toaster />
-      <ImageGallery images={images} />
+      <ImageGallery images={images} openModal={openModal} />
+
+      <ImageModal
+        modalIsOpen={showModal}
+        closeModal={closeModal}
+        url={url}
+        alt={alt}
+      />
+
       {isVisible && <LoadMoreBtn onClick={onClick} />}
       {loading && <Loader />}
       {error && <ErrorMessage />}
