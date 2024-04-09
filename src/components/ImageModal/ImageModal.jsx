@@ -1,5 +1,7 @@
 import Modal from "react-modal";
 
+import css from "./ImageModal.module.css";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -15,13 +17,13 @@ Modal.setAppElement("#root");
 
 const ImageModal = ({ modalIsOpen, closeModal, url, alt }) => {
   return (
-    <div>
+    <div className={css.div}>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <img src={url} alt={alt} />
+        <img src={url} alt={alt} className={css.img} />
       </Modal>
     </div>
   );

@@ -1,0 +1,10 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+  max-width: 100%;
+}
+.li {
+  width: calc((100% - 60px) / 5);
+}

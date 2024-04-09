@@ -1,0 +1,35 @@
+.header {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form {
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 20px; 
+}
+
+.input {
+  background-color: yellow;
+  max-width: 100%;
+  width: 250px;
+}
+
+.btn {
+  background-color: transparent;
+  border-radius: 12px;
+  border: 4px solid black;
+  outline: none;
+}
+
+.btn:hover {
+  border-color: #00ff22;
+  color: #00ffd5;
+}
+
+
+
