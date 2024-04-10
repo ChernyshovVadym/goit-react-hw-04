@@ -46,6 +46,8 @@ const App = () => {
   const onHandleSubmit = (value) => {
     setQuery(value);
     setIsEmpty(false);
+    setImages("");
+    setPage(1);
   };
 
   const openModal = (url, alt) => {
@@ -67,7 +69,7 @@ const App = () => {
       <SearchBar onSubmit={onHandleSubmit} />
       {isEmpty && <p>Start search...</p>}
       <Toaster />
-      <ImageGallery images={images} openModal={openModal} />
+      {images.length && <ImageGallery images={images} openModal={openModal} />}
 
       <ImageModal
         modalIsOpen={showModal}
