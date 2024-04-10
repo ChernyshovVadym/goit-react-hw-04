@@ -69,7 +69,9 @@ const App = () => {
       <SearchBar onSubmit={onHandleSubmit} />
       {isEmpty && <p>Start search...</p>}
       <Toaster />
-      {images.length && <ImageGallery images={images} openModal={openModal} />}
+      {images.length > 0 && (
+        <ImageGallery images={images} openModal={openModal} />
+      )}
 
       <ImageModal
         modalIsOpen={showModal}
