@@ -46,7 +46,7 @@ const App = () => {
   const onHandleSubmit = (value) => {
     setQuery(value);
     setIsEmpty(false);
-    setImages("");
+    setImages([]);
     setPage(1);
   };
 
